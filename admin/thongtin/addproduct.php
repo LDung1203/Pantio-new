@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <label for="price"><strong>Giá</strong></label>
-                    <input type="tẽt" id="price" name="price" placeholder="Điền giá" class="form-control">
+                    <input type="text" id="price" name="price" placeholder="Điền giá" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="note"><strong>Ghi chú</strong></label>

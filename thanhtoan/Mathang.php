@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../font/fontawesome-free-6.5.2-web/fontawesome-free-6.5.2-web/css/all.css">
     <link rel="stylesheet" href="../css/Mathang.css">
+    <link rel="stylesheet" href="../css/trangmua.css">
 </head>
 <body>
     <p class="address">Địa chỉ hệ thống showroom</p>
@@ -75,20 +76,52 @@
             <i class="fa-solid fa-bag-shopping"></i>
         </div>
     </header>
-    <div class="modal-body">
-        <?php include "../php/product_thanhtoan.php"; ?>
-        <img src="../admin/uploads_img/<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image">
-        <div class="content">
-            <h3 style="text-align: center;"><?php echo htmlspecialchars($product['name']); ?></h3>
-            <p> 
-                <strong>Giá:</strong> <?php echo htmlspecialchars($product['price']); ?> VND<br>
-                <strong>Mô tả:</strong> <?php echo nl2br(htmlspecialchars($product['describe'])); ?>ư
-            </p>
-                <button>
-                    <a href="thanhtoan.php?id=<?php echo htmlspecialchars($product['id']); ?>" 
-                    style="text-decoration: none;
-                            color: black;">MUA HÀNG</a>
-                </button>
+    <div class="section">
+        <!-- Trang chủ con bên trái -->
+        <a href="index.html" style="text-decoration: none;
+                            color: #000;">Trang chủ</a>
+        <span>/</span>
+        <!-- Thời trang nữ -->
+        <span>Thời trang nữ</span>
+        <span>/</span>
+        <span>Tên sản phẩm</span> <!--Tên sản phẩm-->
+    </div>
+    <!-- Danh mục chọn đồ bên trái -->
+    <div id="content">
+                                                            <!--Khung bán đồ-->
+        <div class="buy">
+            <div class="bshirt">
+                <?php include "../php/product_thanhtoan.php"; ?>
+                <img src="../admin/uploads_img/<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image">
+                    <div class="buy-tensp">                                             <!--Mục trên-->
+                        <h3 style="text-align: center;"><?php echo htmlspecialchars($product['name']); ?></h3>
+                        <br>
+                        <h8>Mã sản phẩm: <?php echo htmlspecialchars($product['id']); ?></h8>
+                        <br><br>
+                        <a style="font-size: 17px">Giá: <a style="color: red; font-size: 25px"> <?php echo htmlspecialchars($product['price']); ?> VND</a><a style="text-decoration: underline;color: red; font-size: 25px">đ</a></a>
+                        <br>
+                        <a>----------------------------------------------------------------------------------</a>
+                        <br>
+                                                                <!--Mục giữa-->
+                        <strong>Mô tả:</strong> 
+                        <p><?php echo nl2br(htmlspecialchars($product['describe'])); ?></p>
+                        <br>
+                        <a>----------------------------------------------------------------------------------</a>
+                                                                <!--Mục số lượng-->
+                        <br>
+                        <a>Số Lượng:</a>
+                        <div class="buy-sl">
+                            <div class="sl"> <a id="decrease">-</a></div>
+                            <div class="sl"> <input type="text" id="quantity" class="quantity-display" value="1" readonly></div>
+                            <div class="sl"> <a id="increase">+</a></div>
+                        </div>
+                        <script src="../js/soluong.js"></script>
+                        <br> <div class="buy-buy">                                        <!--Phần mua-->
+                            <div class="buy-them">Thêm vào giỏ</div>
+                            <div class="buy-mua">Mua Ngay</div>
+                        </div>
+            </div>
+            </div>
         </div>
     </div>
     <footer>

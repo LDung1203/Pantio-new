@@ -1,0 +1,167 @@
+#content {
+
+}
+.list-package {
+    width: 16.666%;
+    padding: 40px 25px;
+}
+.list-package h3 {
+    padding: 5px 0 10px 0;
+}
+.list-package ul {
+
+}
+.list-package ul li {
+    list-style-type: none;
+}
+/* code phần áo */
+img {
+    width: 45%;
+    padding: 20px;
+}
+body{
+    overflow-x: hidden; /*Ẩn phần thừa ngang của cả trang*/
+}
+.shirt{
+    height: 100px;
+    line-height: 80px; /* Đẩy chữ lên (theo chiều cao dòng) */
+    max-height: 10px;
+    transform: translateX(280px);/*Căn lề trái*/
+
+}
+.sale {
+    position: relative;
+    z-index: 1; /* Đặt lớp cao hơn cho phần sale */
+}
+.ttnam{
+    position: relative;
+    z-index: 2; /* Đặt lớp cao hơn cho phần thời trang nam */
+}
+.size-picture{ /* Cỡ ảnh */
+    height:530px;
+    width: 350px;
+    margin: 10px;
+}
+.form{
+    position: relative;
+    flex-wrap: wrap;
+    object-fit: cover;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    right: 180px;
+}
+.buy{
+    position: relative;
+    height: 800px;
+}
+.buy-size-picture{
+    height: 850px;
+    width: 600px;
+}
+.buy-gia_goc{
+    position: relative;
+    left: 100px;
+}
+.buy-tensp{
+    position: relative;
+    left: 650px;
+    top: -772px;
+    font-size: 22px;
+    width: 52%;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    padding: 20px;
+}
+.buy-gia-km{
+    font-size: 17px;
+    left: 0px;
+}
+.buy-color{
+    font-size: 17px;
+}
+.quantity-display{
+    text-align: center;
+}
+.buy-them{
+    background: black;
+    color: white;
+    width: 220px;
+    height: 40px;
+    display: flex;
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+}
+.buy-mua{
+    background: red;
+    color: white;
+    width: 220px;
+    display: flex;
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+}
+.buy-buy{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Chia thành 3 cột */
+    gap: 0px; /* Khoảng cách giữa các ô */
+}
+.knch{
+    position: relative;
+    top: -300px;
+    left: 620px;
+    font-size: 20px;
+}
+.mix{
+    position: relative;
+    top: -280px;
+    left: 530px;
+}
+.buy-form-picture{
+    position: relative;
+    flex-wrap: wrap;
+    object-fit: cover;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    top: -240px;
+}
+.gia_km_goc{
+    margin-top: -50px;
+}
+.img-name{
+    margin-top: 0px;
+    white-space: nowrap;       /* Không cho phép xuống dòng */
+    overflow: hidden;          /* Ẩn phần vượt quá */
+    text-overflow: ellipsis;   /* Hiển thị dấu ba chấm */
+    width: 330px;
+}
+.knch2{
+    position: relative;
+    top: -130px;
+    left: 620px;
+    font-size: 20px;
+}
+.was{
+    position: relative;
+    top: -110px;
+    left: 625px;
+}
+.buy-form-picture2{
+    position: relative;
+    flex-wrap: wrap;
+    object-fit: cover;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    top: -90px;
+}
+.buy-sl{
+    display: grid;
+    grid-template-columns: repeat(21, 1fr); /* Chia thành 3 cột */
+    gap: 9px; /* Khoảng cách giữa các ô */
+}
+.buy-size-picture-ao{
+    width: 130px;
+    height: 180px;
+}
