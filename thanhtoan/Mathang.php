@@ -93,10 +93,11 @@
             <div class="bshirt">
                 <?php include "../php/product_thanhtoan.php"; ?>
                 <img src="../admin/uploads_img/<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image">
-                    <div class="buy-tensp">                                             <!--Mục trên-->
+                    <div class="buy-tensp">
+                                                                <!--Mục trên-->
                         <h3 style="text-align: center;"><?php echo htmlspecialchars($product['name']); ?></h3>
                         <br>
-                        <h8>Mã sản phẩm: <?php echo htmlspecialchars($product['id']); ?></h8>
+                        <h3>Mã sản phẩm: <?php echo htmlspecialchars($product['id']); ?></h3>
                         <br><br>
                         <a style="font-size: 17px">Giá: <a style="color: red; font-size: 25px"> <?php echo htmlspecialchars($product['price']); ?> VND</a><a style="text-decoration: underline;color: red; font-size: 25px">đ</a></a>
                         <br>
@@ -116,9 +117,11 @@
                             <div class="sl"> <a id="increase">+</a></div>
                         </div>
                         <script src="../js/soluong.js"></script>
-                        <br> <div class="buy-buy">                                        <!--Phần mua-->
-                            <div class="buy-them">Thêm vào giỏ</div>
-                            <div class="buy-mua">Mua Ngay</div>
+                        <br> <div class="buy-buy">      
+                                                                <!--Phần mua-->
+                        <a href="../index.php"><div class="buy-them">Quay lại</div></a>                              
+                            <a href="thanhtoan.php?id=<?php echo htmlspecialchars($product['id']); ?>"><div class="buy-mua">Mua Ngay</div></a>
+                            
                         </div>
             </div>
             </div>

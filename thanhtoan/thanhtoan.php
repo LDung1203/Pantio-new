@@ -28,7 +28,7 @@
         <div id="content" class="form-group" style="margin-left: 80px;">
             <h2>THÔNG TIN THANH TOÁN</h2>
             <div class="userbox">
-                <form action="connt/.php" method="post">
+                <form action="../php/order.php" method="post">
                     <div class="flex-container">
                         <div class="form-group">
                             <input type="text" id="fullname" name="fullname" placeholder="Họ và tên" required>
