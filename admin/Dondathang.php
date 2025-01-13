@@ -62,7 +62,7 @@
           <div class="row">
             <nav class="templatemo-top-nav col-lg-12 col-md-12">
               <ul class="text-uppercase" style="text-align: right;">
-                <li><a href="login.html" style="    line-height: 50px;">Sign out</a></li>
+                <li><a href="../Dangky.html" style="    line-height: 50px;">Sign out</a></li>
                 <img src="../img/357444673_1702327550214019_4545460425657428332_n.jpg" alt="" class="img-thumbnail" 
                 style="width: 50px;
                 height: 50px;

@@ -98,6 +98,9 @@ body{
     grid-template-columns: repeat(3, 1fr); /* Chia thành 3 cột */
     gap: 0px; /* Khoảng cách giữa các ô */
 }
+.buy-buy button:hover {
+    background-color: bisque;
+}
 .buy-buy a {
     text-decoration: none;
     color: #fff;
@@ -113,6 +116,10 @@ body{
 }
 .buy-sl .sl a{
     cursor: pointer;
+}
+.buy-sl .sl {
+    display: inline-block;
+    margin-bottom: 20px;
 }
 .knch{
     position: relative;

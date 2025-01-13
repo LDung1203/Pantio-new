@@ -1,6 +1,7 @@
-<!-- <?php
-    include 'counter.php';
-    ?> -->
+<?php
+    include 'admin/counter.php';
+    include 'php/auth_check.php';
+?> 
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -88,7 +89,7 @@
             <div class="user display">
                 <i class="fa-solid fa-heart"></i>
                 <a href="Dangky.html" style="color: #000;"><i class="fa-regular fa-circle-user"></i></a>
-                <i class="fa-solid fa-bag-shopping"></i>
+                <a href="php/Dangxuat.php"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </header>
         <div id="slide">
@@ -147,12 +148,12 @@
                                                 alt="Product Image">
 
                                             <!-- Hiển thị tên sản phẩm -->
-                                            <a href="" target="_blank" class="img-name js-buy">
+                                            <a href="thanhtoan/Mathang.php?id=<?php echo htmlspecialchars($product['id']); ?>" class="img-name js-buy">
                                                 <?php echo htmlspecialchars($product['name']); ?>
                                             </a>
 
                                             <!-- Hiển thị giá sản phẩm -->
-                                            <p>Giá: <?php echo htmlspecialchars($product['price']); ?> VND</p>
+                                            <p style="text-align: center;">Giá: <?php echo htmlspecialchars($product['price']); ?> VND</p>
                                         </div>
                                         </a>
                                     <?php endforeach; ?>

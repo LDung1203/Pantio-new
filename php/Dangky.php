@@ -1,5 +1,5 @@
 <?php
-require "connect.php"; // Kết nối đến cơ sở dữ liệu
+require "../connt/connect.php"; // Kết nối đến cơ sở dữ liệu
 global $conn;
 
 $phone = isset($_POST["phone"]) ? $_POST["phone"] : null;

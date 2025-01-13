@@ -112,17 +112,20 @@
                         <br>
                         <a>Số Lượng:</a>
                         <div class="buy-sl">
-                            <div class="sl"> <a id="decrease">-</a></div>
-                            <div class="sl"> <input type="text" id="quantity" class="quantity-display" value="1" readonly></div>
-                            <div class="sl"> <a id="increase">+</a></div>
+                            <form action="thanhtoan.php?id=<?php echo htmlspecialchars($product['id']); ?>" method="post">
+                                <div class="sl"> <a id="decrease">-</a></div>
+                                <div class="sl"> <input type="number" id="quantity" class="quantity-display" value="1" readonly name="soluong"></div>
+                                <div class="sl"> <a id="increase">+</a></div>
+                                <br> <div class="buy-buy">      
+                                                                        <!--Phần mua-->
+                                <a href="../index.php"><div class="buy-them">Quay lại</div></a>                              
+                                <button type="submit"><div class="buy-mua">Mua Ngay</div></button>
+                                    
+                                </div>
+                            </form>
                         </div>
                         <script src="../js/soluong.js"></script>
-                        <br> <div class="buy-buy">      
-                                                                <!--Phần mua-->
-                        <a href="../index.php"><div class="buy-them">Quay lại</div></a>                              
-                            <a href="thanhtoan.php?id=<?php echo htmlspecialchars($product['id']); ?>"><div class="buy-mua">Mua Ngay</div></a>
-                            
-                        </div>
+                        
             </div>
             </div>
         </div>

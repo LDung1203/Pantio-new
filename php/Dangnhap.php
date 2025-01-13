@@ -1,6 +1,9 @@
 <?php
-require "connect.php"; // Kết nối cơ sở dữ liệu
+require "../connt/connect.php"; // Kết nối cơ sở dữ liệu
+session_start();
 global $conn;
+
+
 
 $phone = isset($_POST["phone"]) ? $_POST["phone"] : null;
 $pass = isset($_POST["password"]) ? $_POST["password"] : null;
@@ -20,11 +23,15 @@ if ($phone && $pass) {
         // Kiểm tra mật khẩu có khớp không
         if ($pass === $user['password']) { // Chú ý: nếu có sử dụng hash mật khẩu, dùng password_verify
             // Nếu mật khẩu đúng, chuyển hướng đến trang 
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = 'user';
             echo "<script>
-                alert('Đăng nhập thành công!');
-                window.location.href = '../user/home_user.php'; // Chuyển hướng đến trang chủ
+                alert('Đăng nhập thành công!, xin chào quý khách');
+                window.location.href = '../index.php'; // Chuyển hướng đến trang chủ
             </script>";
         } else if($pass === $admin['password']){
+            $_SESSION['admin_id'] = $admin['id'];
+            $_SESSION['role'] = 'admin';
             echo "<script>
                 alert('Đăng nhập thành công!, xin chào Admin');
                 window.location.href = '../admin/Trangchu.php'; // Chuyển hướng đến trang admin
@@ -48,5 +55,7 @@ if ($phone && $pass) {
         alert('Vui lòng điền đầy đủ thông tin!');
         window.location.href = '../Dangky.html'; // Quay lại trang đăng nhập
     </script>";
+    exit;
 }
+
 ?>

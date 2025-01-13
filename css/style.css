@@ -149,9 +149,9 @@ ul.nav>li>a {
 }
 .user i {
     display: inline-block;
-    font-size: 27px;
+    font-size: 26px;
     padding: 0 4px;
-
+    color: #000;
 }
 
 /* ---------------------------------------------slide--------------------------------------------------- */
@@ -329,6 +329,7 @@ ul.nav>li>a {
 p {
   font-size: 16px;
   color: #555;
+  text-align: justify;
 }
 
 /*phần danh Danh mục nổi bật*/

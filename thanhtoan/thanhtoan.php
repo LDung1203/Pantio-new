@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="logo display">
-            <img src="../img/logo.webp" alt="logo" style = "margin-top: 100px; margin-left:325%;"  >
+            <a href="../index.php"><img src="../img/logo.webp" alt="logo" style = "margin-top: 100px; margin-left:325%;"  ></a>
         </div>
     </header>
     <div class="section">
@@ -28,7 +28,13 @@
         <div id="content" class="form-group" style="margin-left: 80px;">
             <h2>THÔNG TIN THANH TOÁN</h2>
             <div class="userbox">
-                <form action="../php/order.php" method="post">
+                <?php include '../php/product_thanhtoan.php'; ?>
+                <?php
+                $soluong = $_POST['soluong'] ?? 1; // Gán giá trị mặc định là 1 nếu không có
+                ?>
+                <form action="../php/order.php?id=<?php echo htmlspecialchars($product['id']); ?>" method="post">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id']); ?>">
+                    <input type="hidden" name="soluong" value="<?php echo htmlspecialchars($soluong); ?>">
                     <div class="flex-container">
                         <div class="form-group">
                             <input type="text" id="fullname" name="fullname" placeholder="Họ và tên" required>
@@ -42,24 +48,15 @@
                     
                     <div class = "flex-container diadiem">
                         <div class="form-group">
-                            <select id="tinh_tp" style="cursor: pointer;" required>
-                                <option value="">Chọn tỉnh/thành phố</option>
+                            <select id="tinh_tp" name="tinh_tp" style="cursor: pointer;" required>
+                                <option value="" type="text">Chọn tỉnh/thành phố</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <select id="quan_huyen" required disabled style="cursor: pointer;">
-                                <option value="">Chọn quận huyện</option>
+                            <select id="quan_huyen" name="quan_huyen" required disabled style="cursor: pointer;">
+                                <option value="" type="text">Chọn quận huyện</option>
                             </select>
                         </div>
-                        <div class="form-group" >
-                            <select id="phuong_xa" required disabled style="cursor: pointer;">
-                                <option value="">Chọn phường/xã</option>
-                            </select>
-                        </div>
-                        
-
-
-
 
                         <script>
                             // Gọi API lấy danh sách tỉnh/thành phố
@@ -69,23 +66,22 @@
                                     const tinhTpDropdown = document.getElementById('tinh_tp');
                                     data.forEach(province => {
                                         const option = document.createElement('option');
-                                        option.value = province.code;
-                                        option.textContent = province.name;
+                                        option.value = province.code; // Mã số tỉnh
+                                        option.textContent = province.name; // Tên tỉnh
                                         tinhTpDropdown.appendChild(option);
                                     });
                                 })
                                 .catch(error => console.error('Lỗi khi tải danh sách tỉnh/thành phố:', error));
-                        
+
                             // Sự kiện khi chọn tỉnh/thành phố
                             document.getElementById('tinh_tp').addEventListener('change', function () {
-                                const tinhTpCode = this.value;
+                                const tinhTpCode = this.value; // Mã số của tỉnh đã chọn
                                 const quanHuyenDropdown = document.getElementById('quan_huyen');
-                                const phuongXaDropdown = document.getElementById('phuong_xa');
-                                quanHuyenDropdown.innerHTML = '<option value="">Chọn quận huyện</option>'; // Xóa quận/huyện cũ
-                                phuongXaDropdown.innerHTML = '<option value="">Chọn phường/xã</option>'; // Xóa phường/xã cũ
-                                quanHuyenDropdown.disabled = true; // Vô hiệu hóa dropdown quận/huyện
-                                phuongXaDropdown.disabled = true; // Vô hiệu hóa dropdown phường/xã
-                        
+
+                                // Reset dropdown quận/huyện và phường/xã
+                                quanHuyenDropdown.innerHTML = '<option value="">Chọn quận huyện</option>';
+                                quanHuyenDropdown.disabled = true;
+
                                 if (tinhTpCode) {
                                     // Gọi API lấy danh sách quận/huyện dựa trên mã tỉnh
                                     fetch(`https://provinces.open-api.vn/api/p/${tinhTpCode}?depth=2`)
@@ -94,96 +90,42 @@
                                             if (data.districts && data.districts.length > 0) {
                                                 data.districts.forEach(district => {
                                                     const option = document.createElement('option');
-                                                    option.value = district.code;
-                                                    option.textContent = district.name;
+                                                    option.value = district.code; // Mã số quận
+                                                    option.textContent = district.name; // Tên quận
                                                     quanHuyenDropdown.appendChild(option);
                                                 });
-                                                quanHuyenDropdown.disabled = false; // Bật dropdown quận/huyện
+                                                quanHuyenDropdown.disabled = false;
+                                            } else {
+                                                // Thông báo nếu không có quận/huyện nào
+                                                const option = document.createElement('option');
+                                                option.textContent = "Không có quận/huyện nào.";
+                                                quanHuyenDropdown.appendChild(option);
+                                                quanHuyenDropdown.disabled = false;
                                             }
                                         })
                                         .catch(error => console.error('Lỗi khi tải danh sách quận/huyện:', error));
                                 }
                             });
-                        
-                            // Sự kiện khi chọn quận/huyện
-                            document.getElementById('quan_huyen').addEventListener('change', function () {
-                                const quanHuyenCode = this.value;
-                                const phuongXaDropdown = document.getElementById('phuong_xa');
-                                phuongXaDropdown.innerHTML = '<option value="">Chọn phường/xã</option>'; // Xóa phường/xã cũ
-                                phuongXaDropdown.disabled = true; // Vô hiệu hóa dropdown phường/xã
-                        
-                                if (quanHuyenCode) {
-                                    // Gọi API lấy danh sách phường/xã dựa trên mã quận/huyện
-                                    fetch(`https://provinces.open-api.vn/api/d/${quanHuyenCode}?depth=2`)
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            if (data.wards && data.wards.length > 0) {
-                                                data.wards.forEach(ward => {
-                                                    const option = document.createElement('option');
-                                                    option.value = ward.code;
-                                                    option.textContent = ward.name;
-                                                    phuongXaDropdown.appendChild(option);
-                                                });
-                                                phuongXaDropdown.disabled = false; // Bật dropdown phường/xã
-                                            }
-                                        })
-                                        .catch(error => console.error('Lỗi khi tải danh sách phường/xã:', error));
-                                }
-                            });
+
                         </script>
                         
                     </div>
                     <br>
                         <g>Chọn phương thức thanh toán:</g>
                         <div class="form-check"><i class="fa-solid fa-wallet" style="font-size: 24px; color: #000;"></i>
-                            <label class="form-check-label" for="cash">Thanh toán khi nhận hàng</label>
-                            <input class="form-check-input" type="radio" name="payment" id="cash" value="cash">
+                            <label class="form-check-label" for="cash">Thanh toán tiền mặt khi nhận hàng</label>
+                            <input class="form-check-input" type="radio" name="payment" id="cash" value="tiền mặt">
                         </div>
                         <div class="form-check"><i class="fa-solid fa-credit-card" style="font-size: 24px; color: #000;"></i>
-                            <label class="form-check-label" for="online">Thanh toán trên website</label>
-                            <input class="form-check-input" type="radio" name="payment" id="online" value="online">
+                            <label class="form-check-label" for="online">Thanh toán chuyển khoản khi nhận hàng</label>
+                            <input class="form-check-input" type="radio" name="payment" id="online" value="chuyển khoản">
                         </div>
-
-
-
-                    <div id="card-info" style="display: none; margin-top: 20px;">
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                const paymentRadios = document.querySelectorAll('input[name="payment"]');
-                                const cardInfoDiv = document.getElementById('card-info');
-                        
-                                paymentRadios.forEach(radio => {
-                                    radio.addEventListener('change', function () {
-                                        if (this.value === 'online') {
-                                            cardInfoDiv.style.display = 'block'; // Hiển thị bảng nhập mã thẻ
-                                        } else {
-                                            cardInfoDiv.style.display = 'none'; // Ẩn bảng nhập mã thẻ
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
-                        <h4>Nhập thông tin thẻ:</h4>
-                        <div class="form-group">
-                            <input type="text" id="card-number" name="card-number" placeholder="Số thẻ" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="card-holder" name="card-holder" placeholder="Tên chủ thẻ" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="expiry-date" name="expiry-date" placeholder="Ngày hết hạn (MM/YY)" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" id="cvv" name="cvv" placeholder="CVV" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn" style="    transform: translate3d(-4px, -95px, 0px);">Thanh toán</button>
+                    <button type="submit" class="btn" style="    transform: translate3d(-4px, -95px, 0px);">Đặt hàng</button>
                 </form>
             </div>  
         </div>
         <div id="content" class="form-group">
             <fieldset class="border p-4 rounded w-50 mx-auto" style="width:69%!important;">
-                <?php include '../php/product_thanhtoan.php'; ?>
                 <img src="../admin/uploads_img/<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" style="width:100%;">
             </fieldset>
         </div>

@@ -1,48 +1,75 @@
 <?php
 require_once("../connt/connect.php"); // Kết nối cơ sở dữ liệu
 
+// Kiểm tra id sản phẩm
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("ID sản phẩm không hợp lệ.");
 }
-
 $product_id = intval($_GET['id']);
 
-// Lấy thông tin sản phẩm từ bảng product
-$sql = "SELECT * FROM product WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $product_id);
-$stmt->execute();
-$product_result = $stmt->get_result();
+// Xử lý dữ liệu từ form
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fullname = $_POST['fullname'] ?? null;
+    $phone = $_POST['phone'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $location = $_POST['location'] ?? null;
+    $tinh_tp = $_POST['tinh_tp'] ?? null;  // Mã tỉnh
+    $quan_huyen = $_POST['quan_huyen'] ?? null;  // Mã quận
+    $payment = $_POST['payment'] ?? null;
+    $soluong = $_POST['soluong'] ?? null;
 
-if ($product_result->num_rows > 0) {
-    $product = $product_result->fetch_assoc();
-} else {
-    die("Không tìm thấy sản phẩm.");
-}
-
-// Lấy thông tin từ form thanh toán
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $fullname = $_POST['fullname'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $location = $_POST['location'];
-    $payment_method = $_POST['payment'];
-    
-    // Lưu thông tin đơn hàng vào bảng order
-    $order_sql = "INSERT INTO `order` (product_id, fullname, phone, email, location, payment_method, product_name, product_price, product_image) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $order_stmt = $conn->prepare($order_sql);
-    $order_stmt->bind_param("issssssss", $product_id, $fullname, $phone, $email, $location, $payment_method, $product['name'], $product['price'], $product['image']);
-    
-    if ($order_stmt->execute()) {
-        echo "<script>
-                alert('Đặt hàng thành công!');
-                window.location.href = 'thank_you_page.php'; // Chuyển hướng tới trang cảm ơn
-              </script>";
-    } else {
-        echo "<script>
-                alert('Có lỗi xảy ra. Vui lòng thử lại.');
-              </script>";
+    // Kiểm tra thông tin đầu vào
+    if (empty($fullname) || empty($phone) || empty($email) || empty($location) || empty($tinh_tp) || empty($quan_huyen) || empty($payment) || empty($soluong)) {
+        die("Vui lòng điền đầy đầy thông tin.");
     }
 }
+function getLocationName($code, $type) {
+    $url = '';
+    switch ($type) {
+        case 'province':
+            $url = "https://provinces.open-api.vn/api/p/{$code}";
+            break;
+        case 'district':
+            $url = "https://provinces.open-api.vn/api/d/{$code}";
+            break;
+        case 'ward':
+            $url = "https://provinces.open-api.vn/api/w/{$code}";
+            break;
+    }
+
+    $data = @file_get_contents($url);
+    if ($data) {
+        $location = json_decode($data, true);
+        return $location['name'] ?? 'Không tìm thấy tên';
+    }
+    return "Không tìm thấy dữ liệu cho mã {$code} ({$type})";
+}
+
+// Ví dụ sử dụng:
+$tinh_tp_name = getLocationName($tinh_tp, 'province');
+$quan_huyen_name = getLocationName($quan_huyen, 'district');
+
+$sql = "INSERT INTO orders (product_id, fullname, phone, email, location, tinh_tp, quan_huyen, payment, so_luong)
+         VALUES ('$product_id', '$fullname', '$phone', '$email', '$location', '$tinh_tp_name', '$quan_huyen_name', '$payment', '$soluong')";
+
+if (mysqli_query($conn, $sql)) {
+    echo "<script type='text/javascript'>
+            alert('Bạn đã đặt hàng thành công, có vấn đề xin liên hệ sđt: 0352005165');
+            // Đợi 3 giây trước khi chuyển hướng về index.php
+            setTimeout(function() {
+                window.location.href = '../index.php';
+            }, 2000); // 3000ms = 3 giây
+        </script>";
+} else {
+    echo "<script type='text/javascript'>
+            alert('Có lỗi xảy ra. Vui lòng thử lại.');
+            // Đợi 3 giây trước khi chuyển hướng về index.php
+            setTimeout(function() {
+                window.location.href = '../index.php';
+            }, 2000); // 3000ms = 3 giây
+        </script>";
+}
+
+// Close the connection
+mysqli_close($conn);
 ?>

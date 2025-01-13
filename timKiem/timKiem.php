@@ -135,11 +135,18 @@
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="product-item">';
+                    
+                    // Xử lý đường dẫn hình ảnh
                     $imagePath = str_replace('../uploads_img/', '../admin/uploads_img/', $row['image']);
                     echo '<img src="' . htmlspecialchars($imagePath) . '" class="product-image" style="height: 77%;" alt="' . htmlspecialchars($row['name']) . '">';
+                    
+                    // Hiển thị tên sản phẩm và giá
                     echo '<div class="product-name">' . htmlspecialchars($row['name']) . '</div>';
                     echo '<div class="product-price">' . number_format($row['price'], 0, ',', '.') . 'đ</div>';
-                    echo '<button onclick="location.href=\'../chiTiet/chiTietSanPham.php?id=' . $row['id'] . '\'" class="buy-button">Xem chi tiết</button>';
+                    
+                    // Sửa button với onclick
+                    echo '<button onclick="window.location.href=\'../thanhtoan/Mathang.php?id=' . htmlspecialchars($row['id']) . '\'" class="buy-button">Xem chi tiết</button>';
+                    
                     echo '</div>';
                 }
             } else {
