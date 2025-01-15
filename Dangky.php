@@ -112,7 +112,7 @@
             <div class="log-out">
                 <h3>Khách hàng mới của Pantio</h3>
                 <p>Nếu chưa có tải khoản , hãy đăng ký ngay !</p>
-                <a href="Thuchiendangky.html"><button>Đăng ký</button></a>
+                <a href="Thuchiendangky.php"><button>Đăng ký</button></a>
                 
             </div>
         </div>

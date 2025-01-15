@@ -96,3 +96,26 @@
 .btn_continue:hover .text_btn_continue{
     color: #fff;
 }
+.cart-section .content{
+    text-align: center;
+    width: 90%;
+    margin: 75px auto;
+    background-color: azure;
+}
+.cart-section .product {
+    width: 480px;
+}
+.product img {
+    width: 20%;
+    padding: 4px;
+    border: 1px solid;
+    border-radius: 10%;
+    margin-right: 40px;
+}
+.cart-section .total-price {
+    width: 500px;
+}
+.total-price .giohang {
+    padding-bottom: 21px;
+    padding-top: 15px;
+}

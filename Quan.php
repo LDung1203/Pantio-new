@@ -27,68 +27,66 @@
                         font-size: 14px;" class="display">Địa chỉ hệ thống showroom</p>
         </div>
         <header>
-            <div class="logo display">
-                <img src="img/logo.webp" alt="logo">
-            </div>
-            <ul class="nav display">
-                <li style="border-bottom: 0.5px solid;"><a href="index.php">Trang chủ</a></li>
-                <li class="hover-border"><a href="Ao.php">
-                    Áo
-                    <i class="fa-solid fa-caret-right"></i>
-                </a></li>
-                <li class="hover-border"><a href="Chanvay.php">
-                    Chân váy
-                    <i class="fa-solid fa-caret-right"></i>
-                </a></li>
-                <li class="hover-border"><a href="#">
-                    Quần
-                    <i class="fa-solid fa-caret-right"></i>
-                </a></li>
-                <li class="hover-border"><a href="Dam.php">
-                    Đầm
-                    <i class="fa-solid fa-caret-right"></i>
-                </a></li>
-                <li class="hover-border"><a href="">JAN. BY PANTIO</a></li>
-                <li class="hover-border"><a href="">
-                    Bộ sưu tập
-                    <i class="fa-solid fa-caret-right"></i>
-                    <ul class="sub-nav">
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign(Đang phát triển)</a></li>
-                        <li><a href="">Lookbook(Đang phát triển)</a></li>
-                    </ul>
-                </a></li>
-                <!-- <li class="hover-border"><a href="">
-                    Tin tức
-                    <i class="fa-solid fa-caret-right"></i>
-                    <ul class="sub-nav sub-1">
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Bài viết nổi bật (Đang phát triển)</a></li>
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Bản tin Pantio (Đang phát triển)</a></li>
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Xu hướng thơi trang (Đang phát triển)</a></li>
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Sự kiện (Đang phát triển)</a></li>
-                        <li><a href="">Tuyển dụng</a></li>
-                    </ul>
-                </a></li> -->
-                <li style="transform: translateX(250px);" class="hover-border"><a href="">
-                                Sản phẩm sale (Đang phát triển)
-                                <i class="fa-solid fa-caret-right"></i>
-                            </a></li>
-            </ul>
-            <div class="search-container display">
-                <form method="GET" action="timKiem/timKiem.php" class="search">
-                    <input type="text" name="search" id="search-input"
-                        placeholder="Tìm sản phẩm..."
-                        value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                    <button type="submit" id="search-button">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-            </div>
-            <div class="user display">
-                <i class="fa-regular fa-circle-user" style="transform: translateY(8px);
-                                                            text-align: center;"><p>User</p></i>
-                <a href="php/Dangxuat.php"><i class="fa-solid fa-right-from-bracket"></i></a>
-            </div>
-        </header>
+        <div class="logo display">
+            <img src="img/logo.webp" alt="logo">
+        </div>
+        <ul class="nav display">
+            <li style="border-bottom: 0.5px solid;"><a href="index.php">Trang chủ</a></li>
+            <li class="hover-border"><a href="Ao.php">
+                Áo
+                <i class="fa-solid fa-caret-right"></i>
+            </a></li>
+            <li class="hover-border"><a href="Chanvay.php">
+                Chân váy
+                <i class="fa-solid fa-caret-right"></i>
+            </a></li>
+            <li class="hover-border"><a href="Quan.php">
+                Quần
+                <i class="fa-solid fa-caret-right"></i>
+            </a></li>
+            <li class="hover-border"><a href="Dam.php">
+                Đầm
+                <i class="fa-solid fa-caret-right"></i>
+            </a></li>
+            <li class="hover-border"><a href="">JAN. BY PANTIO</a></li>
+            <li class="hover-border"><a href="">
+                Bộ sưu tập
+                <i class="fa-solid fa-caret-right"></i>
+                <ul class="sub-nav">
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign(Đang phát triển)</a></li>
+                    <li><a href="">Lookbook(Đang phát triển)</a></li>
+                </ul>
+            </a></li>
+            <!-- <li class="hover-border"><a href="">
+                Tin tức
+                <i class="fa-solid fa-caret-right"></i>
+                <ul class="sub-nav sub-1">
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Bài viết nổi bật (Đang phát triển)</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Bản tin Pantio (Đang phát triển)</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Xu hướng thơi trang (Đang phát triển)</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Sự kiện (Đang phát triển)</a></li>
+                    <li><a href="">Tuyển dụng</a></li>
+                </ul>
+            </a></li> -->
+            <li style="transform: translateX(250px);" class="hover-border"><a href="">
+                            Sản phẩm sale (Đang phát triển)
+                            <i class="fa-solid fa-caret-right"></i>
+                        </a></li>
+        </ul>
+        <div class="search-container display">
+            <form method="GET" action="timKiem/timKiem.php" class="search">
+                <input type="text" name="search" id="search-input"
+                    placeholder="Tìm sản phẩm..."
+                    value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit" id="search-button">
+                    <i class="fa-solid fa-magnifying-glass" style="transform: translate3d(0px, 1px, 0px);"></i>
+                </button>
+            </form>
+        </div>
+        <div class="user display">
+            <a href="https://www.youtube.com/watch?v=Xnc36Q42jo0"><i class="fa-solid fa-headphones" style="padding-left: 40px"></i></a>
+        </div>
+    </header>
         <div id="slide">
             <img src="https://theme.hstatic.net/1000392326/1000686717/14/ms_banner_img3.jpg?v=6814" alt="">
         </div>
