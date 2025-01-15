@@ -31,10 +31,12 @@
                 <?php include '../php/product_thanhtoan.php'; ?>
                 <?php
                 $soluong = $_POST['soluong'] ?? 1; // Gán giá trị mặc định là 1 nếu không có
+                $gia = $product['price']*$soluong;
                 ?>
                 <form action="../php/order.php?id=<?php echo htmlspecialchars($product['id']); ?>" method="post">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id']); ?>">
                     <input type="hidden" name="soluong" value="<?php echo htmlspecialchars($soluong); ?>">
+                    <input type="hidden" name="gia" value="<?php echo htmlspecialchars($gia); ?>">
                     <div class="flex-container">
                         <div class="form-group">
                             <input type="text" id="fullname" name="fullname" placeholder="Họ và tên" required>

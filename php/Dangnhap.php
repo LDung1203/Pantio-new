@@ -1,4 +1,5 @@
 <?php
+include "../admin/counter.php";
 require "../connt/connect.php"; // Kết nối cơ sở dữ liệu
 session_start();
 global $conn;

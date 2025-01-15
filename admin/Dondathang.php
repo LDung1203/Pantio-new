@@ -71,6 +71,91 @@
             </nav>
           </div>
         </div>
+        <div class="templatemo-content-container"> 
+          <div class="container">
+            <div class="panel panel-primary" style="    width: 85%;">
+                <div class="panel-heading text-center" style="background: #1f9cca">
+                    <h2><strong><i class="fa fa-table"></i> BẢNG QUẢN LÝ ĐƠN HÀNG</strong></h2>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline text-center" style="margin-bottom: 20px;" method="post">
+                        <input type="text" name="search" class="form-control" placeholder="Nhập thông tin tìm kiếm" style="width: 300px;">
+                        <button type="submit" name="find" class="btn btn-info"><i></i> Tìm kiếm</button>
+                        <a href="" class="btn btn-secondary"><i class="fa fa-list"></i> Hiển thị tất cả</a>
+                    </form>
+
+                    <?php
+                        require_once "../connt/connect.php";
+                        global $conn;
+
+                        $sql = "SELECT * FROM orders";
+                        if (isset($_POST['find'])) {
+                            $search = $_POST['search'];
+
+                            if (!empty($search)) {
+                                $sql = "SELECT * FROM orders WHERE name LIKE '%$search%' ";
+                            }
+                        }
+
+                    $result = mysqli_query($conn, $sql);
+                    $count = mysqli_num_rows($result);
+
+                        if (isset($_POST['find']) && empty($search)) {
+                            echo '<div class="alert alert-warning text-center">Vui lòng nhập để tìm kiếm.</div>';
+                        } elseif (isset($_POST['find']) && $count <= 0) {
+                            echo '<div class="alert alert-danger text-center">Không tìm thấy kết quả nào với từ khóa: <strong>' . $search . '</strong></div>';
+                        } elseif (isset($_POST['find']) && $count > 0) {
+                            echo '<div class="alert alert-success text-center">Tìm thấy <strong>' . $count . '</strong> kết quả với từ khóa: <strong>' . $search . '</strong></div>';
+                        }
+                    ?>
+
+                    <table class="table table-bordered table-hover text-center">
+                        <thead class="bg-info">
+                        <tr>
+                            <th>ID sản phẩm</th>
+                            <th>Tên khách hàng</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Tỉnh thành</th>
+                            <th>Quận huyện</th>
+                            <th>Cách thức thanh toán</th>
+                            <th>Số lượng sản phẩm</th>
+                            <th>Giá tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>{$row['product_id']}</td>";
+                                echo "<td>{$row['fullname']}</td>";
+                                echo "<td>{$row['phone']}</td>";
+                                echo "<td>{$row['email']}</td>";
+                                echo "<td>{$row['location']}</td>";
+                                echo "<td>{$row['tinh_tp']}</td>";
+                                echo "<td>{$row['quan_huyen']}</td>";
+                                echo "<td>{$row['payment']}</td>";
+                                echo "<td>{$row['so_luong']}</td>";
+                                echo "<td>{$row['gia_mua']}</td>";
+                                echo "<td>
+                                    <a href='dondathang/delete.php?hid={$row['id']}' onclick='return confirm(\"Bạn có muốn xóa đơn này không?\");' class='btn btn-danger btn-sm'>
+                                        <i class='fa fa-trash'></i> Xóa
+                                    </a>
+                                </td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='9'>Không có dữ liệu</td></tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
         <div class="templatemo-content-container">
           <div class="templatemo-content-widget white-bg">
             <footer class="text-right">

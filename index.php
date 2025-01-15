@@ -1,5 +1,4 @@
 <?php
-    include 'admin/counter.php';
     include 'php/auth_check.php';
 ?> 
     <!DOCTYPE html>
@@ -88,7 +87,7 @@
             </div>
             <div class="user display">
                 <i class="fa-solid fa-heart"></i>
-                <a href="Dangky.html" style="color: #000;"><i class="fa-regular fa-circle-user"></i></a>
+                <i class="fa-regular fa-circle-user"></i>
                 <a href="php/Dangxuat.php"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </header>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -131,7 +132,7 @@
                     <p id="visit-count" style="font-size: 30px;
                                                 margin: 0;"></p>
                     <h2 class="media-heading text-uppercase" style="font-size: 14px;
-                                                                    font-style: italic;">Số lượng người truy cập</h2>
+                                                                    font-style: italic;">Số lượng người đăng nhập</h2>
                   </div>        
                 </div>                
               </div>            
@@ -147,7 +148,7 @@
                     <p id="visit-count" style="font-size: 30px;
                                                 margin: 0;"></p>
                     <h2 class="media-heading text-uppercase" style="font-size: 14px;
-                                                                    font-style: italic;">Số lượng khách hàng</h2>
+                                                                    font-style: italic;">bản cập nhật 15.01.25</h2>
                   </div>
                 </div>                
               </div>            

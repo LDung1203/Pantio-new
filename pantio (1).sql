@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2025 at 12:51 PM
+-- Generation Time: Jan 15, 2025 at 06:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -55,18 +55,30 @@ CREATE TABLE `notes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `order` (
-  `id_order` int(11) NOT NULL,
-  `fullname` varchar(250) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `address` varchar(250) NOT NULL,
-  `product` varchar(250) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `price` float NOT NULL
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `location` text DEFAULT NULL,
+  `tinh_tp` varchar(250) DEFAULT NULL,
+  `quan_huyen` varchar(250) DEFAULT NULL,
+  `payment` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `so_luong` int(50) NOT NULL,
+  `gia_mua` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `product_id`, `fullname`, `phone`, `email`, `location`, `tinh_tp`, `quan_huyen`, `payment`, `created_at`, `so_luong`, `gia_mua`) VALUES
+(31, 17, 'lưu dũng', '0352005165', 'dienthoaidepnhat2005@gmail.com', 'ad', 'Tỉnh Quảng Ninh', 'Thành phố Đông Triều', 'tiền mặt', '2025-01-15 05:00:43', 3, 2067000);
 
 -- --------------------------------------------------------
 
@@ -169,10 +181,10 @@ ALTER TABLE `notes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order`
+-- Indexes for table `orders`
 --
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`id_order`);
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product`
@@ -204,10 +216,10 @@ ALTER TABLE `notes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT for table `orders`
 --
-ALTER TABLE `order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `product`

@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quan_huyen = $_POST['quan_huyen'] ?? null;  // Mã quận
     $payment = $_POST['payment'] ?? null;
     $soluong = $_POST['soluong'] ?? null;
-
+    $gia = $_POST['gia'] ?? null;
     // Kiểm tra thông tin đầu vào
-    if (empty($fullname) || empty($phone) || empty($email) || empty($location) || empty($tinh_tp) || empty($quan_huyen) || empty($payment) || empty($soluong)) {
+    if (empty($fullname) || empty($phone) || empty($email) || empty($location) || empty($tinh_tp) || empty($quan_huyen) || empty($payment) || empty($soluong) || empty($gia)) {
         die("Vui lòng điền đầy đầy thông tin.");
     }
 }
@@ -49,8 +49,8 @@ function getLocationName($code, $type) {
 $tinh_tp_name = getLocationName($tinh_tp, 'province');
 $quan_huyen_name = getLocationName($quan_huyen, 'district');
 
-$sql = "INSERT INTO orders (product_id, fullname, phone, email, location, tinh_tp, quan_huyen, payment, so_luong)
-         VALUES ('$product_id', '$fullname', '$phone', '$email', '$location', '$tinh_tp_name', '$quan_huyen_name', '$payment', '$soluong')";
+$sql = "INSERT INTO orders (product_id, fullname, phone, email, location, tinh_tp, quan_huyen, payment, so_luong, gia_mua)
+         VALUES ('$product_id', '$fullname', '$phone', '$email', '$location', '$tinh_tp_name', '$quan_huyen_name', '$payment', '$soluong', '$gia')";
 
 if (mysqli_query($conn, $sql)) {
     echo "<script type='text/javascript'>
@@ -58,7 +58,7 @@ if (mysqli_query($conn, $sql)) {
             // Đợi 3 giây trước khi chuyển hướng về index.php
             setTimeout(function() {
                 window.location.href = '../index.php';
-            }, 2000); // 3000ms = 3 giây
+            }, 1000);
         </script>";
 } else {
     echo "<script type='text/javascript'>
@@ -66,10 +66,10 @@ if (mysqli_query($conn, $sql)) {
             // Đợi 3 giây trước khi chuyển hướng về index.php
             setTimeout(function() {
                 window.location.href = '../index.php';
-            }, 2000); // 3000ms = 3 giây
+            }, 000);
         </script>";
 }
 
-// Close the connection
+// Close the connections
 mysqli_close($conn);
 ?>

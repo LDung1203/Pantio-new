@@ -130,6 +130,7 @@
             </div>
         </div>
     </div>
+    
     <footer>
         <div class="ft-1" style="transform: translateY(-100px);">
             <h3>THỜI TRANG PANTIO</h3>
