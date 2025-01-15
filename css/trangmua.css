@@ -92,6 +92,12 @@ body{
     display: flex;
     justify-content: center; /* Canh giữa theo chiều ngang */
     align-items: center; /* Canh giữa theo chiều dọc */
+    font-size: 16px;
+    border: 1px solid #828282;
+}
+.buy-them:hover {
+    background-color: #ccc;
+    color: #000;
 }
 .buy-buy{
     display: grid;

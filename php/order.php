@@ -70,6 +70,7 @@ if (mysqli_query($conn, $sql)) {
         </script>";
 }
 
+
 // Close the connections
 mysqli_close($conn);
 ?>

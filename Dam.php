@@ -1,5 +1,5 @@
 <?php
-    include '../php/auth_check.php';
+    include 'php/auth_check.php';
 ?> 
     <!DOCTYPE html>
     <html lang="en">
@@ -7,9 +7,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="../css/timKiem_css.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../font/fontawesome-free-6.5.2-web/fontawesome-free-6.5.2-web/css/all.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/timKiem_css.css">
+        <link rel="stylesheet" href="font/fontawesome-free-6.5.2-web/fontawesome-free-6.5.2-web/css/all.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Rampart+One&family=Rubik+Puddles&family=Rubik+Vinyl&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Protest+Guerrilla&family=Shizuru&display=swap" rel="stylesheet">
@@ -25,10 +28,10 @@
         </div>
         <header>
             <div class="logo display">
-                <img src="../img/logo.webp" alt="logo">
+                <img src="img/logo.webp" alt="logo">
             </div>
             <ul class="nav display">
-                <li style="border-bottom: 0.5px solid;"><a href="../index.php">Trang chủ</a></li>
+                <li style="border-bottom: 0.5px solid;"><a href="index.php">Trang chủ</a></li>
                 <li class="hover-border"><a href="Ao.php">
                     Áo
                     <i class="fa-solid fa-caret-right"></i>
@@ -41,7 +44,7 @@
                     Quần
                     <i class="fa-solid fa-caret-right"></i>
                 </a></li>
-                <li class="hover-border"><a href="Dam.php">
+                <li class="hover-border"><a href="#">
                     Đầm
                     <i class="fa-solid fa-caret-right"></i>
                 </a></li>
@@ -86,122 +89,99 @@
                 <a href="php/Dangxuat.php"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </header>
-    <div id="content"> 
-        <div class="section">
-            <!-- Trang chủ con bên trái -->
-            <a href="../index.html" style="text-decoration: none;
-                                color: #000;">Trang chủ</a>
-            <span>/</span>
-            <!-- Thời trang nữ -->
-            <span>Tìm kiếm</span>
-            <span>/</span>
-
+        <div id="slide">
+            <img src="https://theme.hstatic.net/1000392326/1000686717/14/ms_banner_img3.jpg?v=6814" alt="">
         </div>
-
-        <h1 class="style-font" align="center" style="padding-top: 20px">KẾT QUẢ TÌM KIẾM</h1>
-
-        <!---------------------------Hiển thị kết quả tìm kiếm và phân trang-->
-
+        <div class="style-div style-div-top">
+            <h1 class="style-font font-family">TẤT CẢ SẢN PHẨM PHẨM ĐANG CÓ MẶT LẠI SHOP</h1>
+            <br>
+            <img class="img-3que" src="img/3que.png" style="margin-bottom: 25px;">
+        </div>
+        <?php include "php/display.php" ?>
         <?php
-        require_once('../connt/connect.php');
+        $type_to_display = "Đầm"; // Loại sản phẩm bạn muốn hiển thị
 
-        // Số lượng sản phẩm trên mỗi trang
-        $limit = 6;
+        if (isset($productsByType[$type_to_display])) {
+            $products = $productsByType[$type_to_display]; // Lấy sản phẩm theo loại
+            ?>
+                <?php foreach ($products as $product): ?>
+                    <a href="thanhtoan/Mathang.php?id=<?php echo htmlspecialchars($product['id']); ?>">
+                        <div class="img-dis" style="width: 33%!important;">
+                            <?php 
+                            // Chuyển đường dẫn ../ thành admin/
+                            $imagePath = str_replace('../', 'admin/', $product['image']); 
+                            ?>
+                            <!-- Hiển thị ảnh sản phẩm -->
+                            <img src="<?php echo htmlspecialchars($imagePath); ?>" 
+                                class="img-border" 
+                                style="width: 300px; height: 400px;" 
+                                alt="Product Image">
 
-        // Xác định trang hiện tại
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $offset = ($page - 1) * $limit;
+                            <!-- Hiển thị tên sản phẩm -->
+                            <a href="thanhtoan/Mathang.php?id=<?php echo htmlspecialchars($product['id']); ?>" class="img-name js-buy">
+                                <?php echo htmlspecialchars($product['name']); ?>
+                            </a>
 
-        //------------------------------------------------------------------------------------------
-
-        // Lấy giá trị tìm kiếm từ form
-        if (isset($_GET['search']) && $_GET['search'] !== '') {
-            $searchValue = mysqli_real_escape_string($conn, trim($_GET['search']));
-
-            // Truy vấn tìm kiếm sản phẩm với LIMIT và OFFSET
-            $query = "SELECT * FROM product 
-                    WHERE name LIKE '%$searchValue%' 
-                    OR `describe` LIKE '%$searchValue%' 
-                    OR price LIKE '%$searchValue%' 
-                    LIMIT $limit OFFSET $offset";
-
-            $result = mysqli_query($conn, $query);
-
-            echo '<div class="search-results">';
-
-            // Hiển thị kết quả tìm kiếm
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<div class="product-item">';
-                    
-                    // Xử lý đường dẫn hình ảnh
-                    $imagePath = str_replace('../uploads_img/', '../admin/uploads_img/', $row['image']);
-                    echo '<img src="' . htmlspecialchars($imagePath) . '" class="product-image" style="height: 77%;" alt="' . htmlspecialchars($row['name']) . '">';
-                    
-                    // Hiển thị tên sản phẩm và giá
-                    echo '<div class="product-name">' . htmlspecialchars($row['name']) . '</div>';
-                    echo '<div class="product-price">' . number_format($row['price'], 0, ',', '.') . 'đ</div>';
-                    
-                    // Sửa button với onclick
-                    echo '<button onclick="window.location.href=\'../thanhtoan/Mathang.php?id=' . htmlspecialchars($row['id']) . '\'" class="buy-button">Xem chi tiết</button>';
-                    
-                    echo '</div>';
-                }
-            } else {
-                echo '<div class="no-results">Không tìm thấy sản phẩm nào phù hợp.</div>';
-            }
-
-            echo '</div>';
-
-            // Lấy tổng số sản phẩm để tính số trang
-            $countQuery = "SELECT COUNT(*) AS total FROM product 
-                        WHERE name LIKE '%$searchValue%' 
-                        OR `describe` LIKE '%$searchValue%' 
-                        OR price LIKE '%$searchValue%'";
-            $countResult = mysqli_query($conn, $countQuery);
-            $totalRows = mysqli_fetch_assoc($countResult)['total'];
-            $totalPages = ceil($totalRows / $limit);
-
-            // Hiển thị phân trang
-            echo '<div class="pagination">';
-
-            // Liên kết đến trang trước
-            if ($page > 1) {
-                echo '<a href="?search=' . urlencode($searchValue) . '&page=' . ($page - 1) . '">&laquo; Trang trước</a>';
-            }
-
-            // Liên kết đến các trang
-            for ($i = 1; $i <= $totalPages; $i++) {
-                echo '<a href="?search=' . urlencode($searchValue) . '&page=' . $i . '"';
-                if ($i == $page) {
-                    echo ' class="active"'; // Làm nổi bật trang hiện tại
-                }
-                echo '>' . $i . '</a>';
-            }
-
-            // Liên kết đến trang sau
-            if ($page < $totalPages) {
-                echo '<a href="?search=' . urlencode($searchValue) . '&page=' . ($page + 1) . '">Trang sau &raquo;</a>';
-            }
-
-            echo '</div>';
+                            <!-- Hiển thị giá sản phẩm -->
+                            <p style="text-align: center;">Giá: <?php echo htmlspecialchars($product['price']); ?> VND</p>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+        <?php
+        }else {
+            echo "Không tìm thấy sản phẩm thuộc loại: " . htmlspecialchars($type_to_display);
         }
         ?>
 
+        <!-- <br><br> -->
+        <! DANH MỤC NỔI BẬT>
+        <div class="category-new">
+            <div class="style-div style-div-top">
+                <h1 class="style-font">DANH MỤC NỔI BẬT</h1>
+                <br>
+                <img class="img-3que" src="img/3que.png">
+            </div>
+            <div class="content">
+                <div class="box1 display">
+                    <div class="box2 display"><img src="img/hmodule_tab_1_img1.png" alt=""></div>
+                    <div class="box2 display"><img src="img/hmodule_tab_1_img2.png" alt="" style="margin: 0 11px;"></div>
+                    <img src="img/hmodule_tab_1_img3.png" alt="" style="padding-top: 9px;">
+                </div>
+                <div class="box3 display">
+                    <img src="img/fl5.png" alt="">
+                </div>
+                <div class="box3 display" style="    margin-left: 8px;">
+                    <div class="box4"><img src="img/hmodule_tab_1_img5.png" alt="" style="margin-bottom: 5px;"></div>
+                    <div class="box4"><img src="img/hmodule_tab_1_img6.png" alt=""></div>
+                </div>
+            </div>
+            <div class="content-1">
+                <img src="img/home-news_1024x1024.webp" alt="" class="display">
+                <div class="ND">
+                    <div class="style-div display">
+                        <h1 class="style-font">PANTIO TÌM KIẾM ĐẠI LÝ HỢP TÁC KINH DOANH TRÊN TOÀN QUỐC</h1>
+                        <img class="img-3que" src="img/3que.png">
+                        <br>
+                        <p>Với mong muốn mở rộng thị trường và trở thành một trong những địa điểm mua sắm hàng đầu của hàng triệu phái đẹp Việt, thương hiệu thời trang Pantio chính thức tuyển Đại lý hợp tác kinh doanh trên toàn quốc, chia sẻ cơ hội đầu tư kinh doanh không mất vốn - không hàng tồn kho tới các đối tác đầu tư trên toàn lãnh thổ Việt Nam.</p>
+                        <button>Tìm hiểu thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <! ĐĂNG KÝ THEO DÕI KÊNH FACEBOOK FANPAGE>
         <div class="advertisement">
             <div class="style-div " style="
                 margin-top: 50px;">
                 <h1 class="style-font">ĐĂNG KÝ THEO DÕI KÊNH FACEBOOK FANPAGE</h1>
                 <br>
-                <img class="img-3que" src="../img/3que.png">
+                <img class="img-3que" src="img/3que.png">
             </div>
             <div class="content-ad">
                 <ul>
-                    <li><img src="../img/fl1.png" alt=""></li>
-                    <li><img src="../img/fl2.png" alt=""></li>
-                    <li><img src="../img/fl3.png" alt=""></li>
-                    <li><img src="../img/fl4.png" alt=""></li>
+                    <li><img src="img/fl1.png" alt=""></li>
+                    <li><img src="img/fl2.png" alt=""></li>
+                    <li><img src="img/fl3.png" alt=""></li>
+                    <li><img src="img/fl4.png" alt=""></li>
                 </ul>
             </div>
         </div>

@@ -59,7 +59,7 @@
             <li><a href="Thongtin.php"><i class="fa fa-bar-chart fa-fw"></i>THÔNG TIN</a></li>
             <li><a href="Khachhang.php"><i class="fa fa-users fa-fw"></i>KHÁCH HÀNG</a></li>
             <li><a href="Dondathang.php"><i class="fa fa-sliders fa-fw"></i>ĐƠN ĐẶT HÀNG</a></li>
-            <li><a href="../Dangky.html"><i class="fa fa-eject fa-fw"></i>ĐĂNG XUẤT</a></li>
+            <li><a href="../Dangky.php"><i class="fa fa-eject fa-fw"></i>ĐĂNG XUẤT</a></li>
           </ul>  
         </nav>
       </div>

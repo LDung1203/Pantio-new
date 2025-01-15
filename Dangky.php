@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Thoitrangnu.css">
+    <link rel="stylesheet" href="css/Dangky.css">
     <link rel="stylesheet" href="font/fontawesome-free-6.5.2-web/fontawesome-free-6.5.2-web/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,124 +32,88 @@
             <img src="img/logo.webp" alt="logo">
         </div>
         <ul class="nav display">
-            <li style="border-bottom: 0.5px solid;"><a href="index.html">Trang chủ</a></li>
-            <li class="hover-border"><a href="">
-                Thời trang nữ
+            <li style="border-bottom: 0.5px solid;"><a href="index.php">Trang chủ</a></li>
+            <li class="hover-border"><a href="Ao.php">
+                Áo
                 <i class="fa-solid fa-caret-right"></i>
             </a></li>
-            <li class="hover-border"><a href="">
-                Thời trang nam
+            <li class="hover-border"><a href="Chanvay.php">
+                Chân váy
                 <i class="fa-solid fa-caret-right"></i>
-                <ul class="sub-nav">
-                    <li style="border-bottom: 0.5px dashed #000;" class="sub-2"><a href="">
-                        Áo
-                        <ul class="sub-nav sub-nav-chdr">
-                            <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign</a></li>
-                            <li><a href="">Lookbook</a></li>
-                        </ul>
-                    </a></li>
-                    <li><a href="">Quần</a></li>
-                </ul>
+            </a></li>
+            <li class="hover-border"><a href="Quan.php">
+                Quần
+                <i class="fa-solid fa-caret-right"></i>
+            </a></li>
+            <li class="hover-border"><a href="Dam.php">
+                Đầm
+                <i class="fa-solid fa-caret-right"></i>
             </a></li>
             <li class="hover-border"><a href="">JAN. BY PANTIO</a></li>
             <li class="hover-border"><a href="">
                 Bộ sưu tập
                 <i class="fa-solid fa-caret-right"></i>
                 <ul class="sub-nav">
-                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign</a></li>
-                    <li><a href="">Lookbook</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign(Đang phát triển)</a></li>
+                    <li><a href="">Lookbook(Đang phát triển)</a></li>
                 </ul>
             </a></li>
-            <li class="hover-border"><a href="">
+            <!-- <li class="hover-border"><a href="">
                 Tin tức
                 <i class="fa-solid fa-caret-right"></i>
                 <ul class="sub-nav sub-1">
-                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Bài viết nổi bật</a></li>
-                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Bản tin Pantio</a></li>
-                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Xu hướng thơi trang</a></li>
-                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Sự kiện</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Bài viết nổi bật (Đang phát triển)</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Bản tin Pantio (Đang phát triển)</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Xu hướng thơi trang (Đang phát triển)</a></li>
+                    <li style="border-bottom: 0.5px dashed #000;"><a href="">Sự kiện (Đang phát triển)</a></li>
                     <li><a href="">Tuyển dụng</a></li>
                 </ul>
-            </a></li>
-            <li style="transform: translateX(340px);" class="hover-border"><a href="">
-                            Sản phẩm sale
+            </a></li> -->
+            <li style="transform: translateX(250px);" class="hover-border"><a href="">
+                            Sản phẩm sale (Đang phát triển)
                             <i class="fa-solid fa-caret-right"></i>
                         </a></li>
         </ul>
-        <div class="search  display">
-            <input type="text" placeholder="Tìm sản phẩm">
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-container display">
+            <form method="GET" action="timKiem/timKiem.php" class="search">
+                <input type="text" name="search" id="search-input"
+                    placeholder="Tìm sản phẩm..."
+                    value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit" id="search-button">
+                    <i class="fa-solid fa-magnifying-glass" style="transform: translate3d(0px, 1px, 0px);"></i>
+                </button>
+            </form>
         </div>
         <div class="user display">
-            <i class="fa-solid fa-heart"></i>
-            <i class="fa-regular fa-circle-user"></i>
-            <i class="fa-solid fa-bag-shopping"></i>
+            <a href="https://www.youtube.com/watch?v=Xnc36Q42jo0"><i class="fa-solid fa-headphones" style="padding-left: 40px"></i></a>
         </div>
     </header>
     <div class="section">
         <a href="index.html" style="text-decoration: none;
                         color: #000;">Trang chủ</a>
         <span>/</span>
-        <span>Thời trang nữ</span>
+        <span>Tài khoản</span>
     </div>
     <div id="content">
-        <div class="list-package">
-            <h3>ÁO</h3>
-            <ul>
-                <li><a href="">Áo sơ mi</a></li>
-                <li><a href="">Áo vest</a></li>
-                <li><a href="">Áo demi</a></li>
-                <li><a href="">Áo dài</a></li>
-                <li><a href="">Áo dệt kim</a></li>
-                <li><a href="">Áo 2 dây</a></li>
-                <li><a href="">Áo len</a></li>
-                <li><a href="">Áo khoác</a></li>
-            </ul>
-            <h3>Đầm</h3>
-            <ul>
-                <li><a href="">Đầm công sở</a></li>
-                <li><a href="">Đầm dạo phố</a></li>
-                <li><a href="">Đầm dạ hội</a></li>
-                <li><a href="">Jumpsuit</a></li>
-                <li><a href="">Váy Đầm Hoa</a></li>
-            </ul>
-            <h3>Quần</h3>
-            <ul>
-                <li><a href="">Quần dài</a></li>
-                <li><a href="">Quần lửng</a></li>
-                <li><a href="">Quần short</a></li>
-                <li><a href="">Quần jean</a></li>
-                <li><a href="">Quần áo dài</a></li>
-            </ul>
-            <h3>Chân váy</h3>
-            <ul>
-                <li><a href="">Chân váy dài</a></li>
-                <li><a href="">Chân váy ngắn</a></li>
-            </ul>
-            <h3>Phụ kiện</h3>
-            <ul>
-                <li><a href="">Túi xách</a></li>
-                <li><a href="">Khăn</a></li>
-                <li><a href="">Vòng cổ</a></li>
-                <li><a href="">Quần tất</a></li>
-                <li><a href="">Nước hoa</a></li>
-            </ul>
-        </div>
-        <div class="list-feature">
-            <div class="shirt">
-                <h3>Áo</h3>
-                <ul>
-                    <li><a href="">
-                        <img src="img/shirt.jpg" alt="shirt">
-                        <span>Áo sơ mi</span>
-                        <p>Áo sơ mi dùng để đem đ��p và tập trung, có thể thay đ��i màu sắc hoặc kích thước để phù h��p với bạn.</p>
-                    </a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
-                </ul>
+        <h1>Đăng nhập</h1>
+        <div class="enter">
+            <div class="log-in">
+                <h3>Đăng nhập bằng tài khoản</h3>
+                <p>Nếu bạn đã có tài khoản, hãy đăng nhập để tích lũy điểm thành viên và nhận được những ưu đãi tốt hơn!</p>
+                <form action="php/Dangnhap.php" method="post">
+                    <label for="phone" class="phone">Số điện thoại</label>
+                    <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+                    <label for="password" class="pass">Mật khẩu</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                    <button type="submit">Đăng nhập</button>
+                </form>
+                
+            </div>
+            <div class="log-out">
+                <h3>Khách hàng mới của Pantio</h3>
+                <p>Nếu chưa có tải khoản , hãy đăng ký ngay !</p>
+                <a href="Thuchiendangky.html"><button>Đăng ký</button></a>
+                
             </div>
         </div>
     </div>

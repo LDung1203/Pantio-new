@@ -31,47 +31,45 @@
                 <img src="img/logo.webp" alt="logo">
             </div>
             <ul class="nav display">
-                <li style="border-bottom: 0.5px solid;"><a href="">Trang chủ</a></li>
-                <li class="hover-border"><a href="">
-                    Thời trang nữ
+                <li style="border-bottom: 0.5px solid;"><a href="#">Trang chủ</a></li>
+                <li class="hover-border"><a href="Ao.php">
+                    Áo
                     <i class="fa-solid fa-caret-right"></i>
                 </a></li>
-                <li class="hover-border"><a href="">
-                    Thời trang nam
+                <li class="hover-border"><a href="Chanvay.php">
+                    Chân váy
                     <i class="fa-solid fa-caret-right"></i>
-                    <ul class="sub-nav">
-                        <li style="border-bottom: 0.5px dashed #000;" class="sub-2"><a href="">
-                            Áo
-                            <ul class="sub-nav sub-nav-chdr">
-                                <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign</a></li>
-                                <li><a href="">Lookbook</a></li>
-                            </ul>
-                        </a></li>
-                        <li><a href="">Quần</a></li>
-                    </ul>
+                </a></li>
+                <li class="hover-border"><a href="Quan.php">
+                    Quần
+                    <i class="fa-solid fa-caret-right"></i>
+                </a></li>
+                <li class="hover-border"><a href="Dam.php">
+                    Đầm
+                    <i class="fa-solid fa-caret-right"></i>
                 </a></li>
                 <li class="hover-border"><a href="">JAN. BY PANTIO</a></li>
                 <li class="hover-border"><a href="">
                     Bộ sưu tập
                     <i class="fa-solid fa-caret-right"></i>
                     <ul class="sub-nav">
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign</a></li>
-                        <li><a href="">Lookbook</a></li>
+                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Campaign(Đang phát triển)</a></li>
+                        <li><a href="">Lookbook(Đang phát triển)</a></li>
                     </ul>
                 </a></li>
-                <li class="hover-border"><a href="">
+                <!-- <li class="hover-border"><a href="">
                     Tin tức
                     <i class="fa-solid fa-caret-right"></i>
                     <ul class="sub-nav sub-1">
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Bài viết nổi bật</a></li>
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Bản tin Pantio</a></li>
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Xu hướng thơi trang</a></li>
-                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Sự kiện</a></li>
+                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Bài viết nổi bật (Đang phát triển)</a></li>
+                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Bản tin Pantio (Đang phát triển)</a></li>
+                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Xu hướng thơi trang (Đang phát triển)</a></li>
+                        <li style="border-bottom: 0.5px dashed #000;"><a href="">Sự kiện (Đang phát triển)</a></li>
                         <li><a href="">Tuyển dụng</a></li>
                     </ul>
-                </a></li>
-                <li style="transform: translateX(340px);" class="hover-border"><a href="">
-                                Sản phẩm sale
+                </a></li> -->
+                <li style="transform: translateX(250px);" class="hover-border"><a href="">
+                                Sản phẩm sale (Đang phát triển)
                                 <i class="fa-solid fa-caret-right"></i>
                             </a></li>
             </ul>
@@ -86,8 +84,8 @@
                 </form>
             </div>
             <div class="user display">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-regular fa-circle-user"></i>
+                <i class="fa-regular fa-circle-user" style="transform: translateY(8px);
+                                                            text-align: center;"><p>User</p></i>
                 <a href="php/Dangxuat.php"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </header>

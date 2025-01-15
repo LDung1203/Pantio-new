@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2025 at 06:03 AM
+-- Generation Time: Jan 15, 2025 at 03:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,7 +78,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `product_id`, `fullname`, `phone`, `email`, `location`, `tinh_tp`, `quan_huyen`, `payment`, `created_at`, `so_luong`, `gia_mua`) VALUES
-(31, 17, 'lưu dũng', '0352005165', 'dienthoaidepnhat2005@gmail.com', 'ad', 'Tỉnh Quảng Ninh', 'Thành phố Đông Triều', 'tiền mặt', '2025-01-15 05:00:43', 3, 2067000);
+(31, 17, 'lưu dũng', '0352005165', 'dienthoaidepnhat2005@gmail.com', 'ad', 'Tỉnh Quảng Ninh', 'Thành phố Đông Triều', 'tiền mặt', '2025-01-15 05:00:43', 3, 2067000),
+(32, 19, 'lưu dũng', '0352005165', '2005luuducanhdung@gmail.com', 'ad', 'Tỉnh Lạng Sơn', 'Huyện Lộc Bình', 'tiền mặt', '2025-01-15 10:33:52', 1, 689000);
 
 -- --------------------------------------------------------
 
@@ -130,7 +131,7 @@ INSERT INTO `product` (`id`, `name`, `type`, `describe`, `quantity`, `price`, `n
 --
 
 CREATE TABLE `product_type` (
-  `type` int(10) NOT NULL,
+  `type` int(50) NOT NULL,
   `type_name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -141,7 +142,7 @@ CREATE TABLE `product_type` (
 INSERT INTO `product_type` (`type`, `type_name`) VALUES
 (1, 'Áo'),
 (2, 'Chân váy'),
-(3, 'Quần\r\n'),
+(3, 'Quần'),
 (4, 'Đầm');
 
 -- --------------------------------------------------------
@@ -193,6 +194,12 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `product_type`
+--
+ALTER TABLE `product_type`
+  ADD PRIMARY KEY (`type`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -219,13 +226,19 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `product_type`
+--
+ALTER TABLE `product_type`
+  MODIFY `type` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
